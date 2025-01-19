@@ -132,3 +132,119 @@ const userName = (name) => {
 console.log(userName("abhishek")); // "Abhishek"
 console.log(userName("")); // "Name cannot be empty"
 
+
+
+// 6. Vowel Counter
+/*
+We want to count the number of vowels in a person's name. Given a name as input, the program should iterate
+through each character in the name, and check if it is a vowel or not. If the character is a vowel, it should be
+counted.
+*/
+
+function countVowels(name) {
+    const lowerCaseName = name.toLowerCase();
+
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+    let vowelCount = 0;
+
+    for (let char of lowerCaseName) {
+
+        if (vowels.includes(char)) {
+            vowelCount++; 
+        }
+    }
+
+    return vowelCount; 
+}
+
+const name = "Abhishek";
+const numberOfVowels = countVowels(name);
+console.log(`The name "${name}" has ${numberOfVowels} vowels.`);
+
+
+
+// 7. Remove Duplicates
+/*
+In an online shopping application, customers can add multiple items to their cart. However, sometimes
+customers accidentally add the same item more than once, resulting in duplicate items in their cart. The
+duplicate items not only make it difficult for the customer to track the items they want to purchase but also
+affect the accuracy of the purchase order.
+
+To solve this problem, the application needs to remove duplicate items from the customer's cart. The program
+should take the customer's cart with duplicates as input, and return a new cart without duplicates.
+Write a program to solve the problem of duplicate items in the cart by removing duplicates.
+*/
+
+function removeDuplicate(cart) {
+    const uniqueCart = [...new Set(cart)];
+    return uniqueCart;
+}
+
+const cart = ["Apple", "Banana", "Orange", "Apple", "Banana"];
+const newCart = removeDuplicate(cart);
+
+console.log(`Original cart => `, cart);
+console.log(`Cart without duplicate => `, newCart);
+
+
+
+// 8. Inverted right-angled triangle pattern with asterisks
+/*
+Write a program that takes an integer input i and prints an inverted right-angled triangle pattern of asterisks
+with i rows.
+*/
+
+function invertedLeftTriangle(rows) {
+    for (let i = rows; i >= 1; i--) {
+        console.log('*'.repeat(i)); // Repeat '*' i times
+    }
+}
+
+invertedLeftTriangle(6);
+
+
+
+// 9. Check for divisibility.
+/*
+Write a program that takes an array of numbers and prints all the numbers that are divisible by 3, but not by 2.
+Use a for loop and continue statement.
+*/
+
+function divisibleBy3Not2(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        // Check if the number is divisible by 3 but not by 2
+        if (arr[i] % 3 !== 0 || arr[i] % 2 === 0) {
+            continue; // Skip this iteration if the condition is not met
+        }
+        console.log(arr[i]); // Print the number that satisfies the condition
+    }
+}
+
+const numbers = [1, 3, 6, 9, 12, 15, 18, 21, 24, 27];
+divisibleBy3Not2(numbers);
+
+
+
+// 10. Correct a bug
+/*
+You are working on an e-commerce website where customers can add items to their cart. The cart stores the
+quantity of each item that the customer wants to purchase in an array of numbers. However, the website is
+currently experiencing a bug where the quantity of each item is being recorded incorrectly by reducing it to
+half. As a result, you need to write a JavaScript function that can double the quantity of each item in the cart
+array to correct the bug.
+*/
+
+function fixCartQuantities(cart) {
+    // Iterate through the array and double each quantity
+    for (let i = 0; i < cart.length; i++) {
+        cart[i] = cart[i] * 2; // Double the value at each index
+    }
+    return cart; // Return the updated cart
+}
+
+// Example usage:
+const cart = [1, 2, 3, 4, 5]; // Quantities recorded incorrectly
+const correctedCart = fixCartQuantities(cart);
+
+console.log("Corrected Cart:", correctedCart);
