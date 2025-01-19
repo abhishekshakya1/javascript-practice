@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Change</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">
+        The most affordable learning
+        platform
+    </h1>
+    <button id="btn">Change</button>
+</body>
+<script>
+    document.getElementById("btn").addEventListener("click", () => {
+        let heading = document.getElementById("heading")
+
+        if (heading.textContent.trim().toLowerCase() === "the most affordable learning platform") {
+            heading.textContent = "PW Skills";
+        } else {
+            heading.textContent = "The most affordable learning platform";
+        }
+
+    });
+</script>
+</html>
+
+
+
+
+
+
+
+
+
