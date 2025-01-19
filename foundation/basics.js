@@ -248,3 +248,206 @@ const cart = [1, 2, 3, 4, 5]; // Quantities recorded incorrectly
 const correctedCart = fixCartQuantities(cart);
 
 console.log("Corrected Cart:", correctedCart);
+
+
+
+// 11. Unit converter
+/*
+A local weather station needs to convert temperature data collected in Celsius to Fahrenheit before displaying
+it on its website. They want a function that can convert Celsius to Fahrenheit accurately and efficiently. The
+function should take input in Celsius and return output in Fahrenheit. This function will help the weather station
+to provide temperature readings that are easily understandable to a wider audience.
+*/
+
+function celsiusToFahrenheit(celsius) {
+    const result = (celsius * 9/5) + 32;
+    return result;
+}
+
+const celsius = 25;
+const fahrenheit  = celsiusToFahrenheit(celsius);
+console.log(`${celsius}°C is equal to ${fahrenheit}°F`);
+
+
+
+// 12. Calculate rental cost
+/*
+A car rental company needs to calculate the cost of a rental based on the number of days rented and the type
+of car. They require a function that takes in the number of days rented and car type and returns the rental cost.
+The total cost would be the rental cost multiplied by the number of days rented.
+The rental costs are
+V Economy = Rs. 4000 /- per day
+V Midsize = Rs. 10,000 /- per day
+V Luxury = Rs. 20,000 /- per day.
+*/
+
+function calculateRent(daysRented, carType) {
+    if(carType === "Economy") {
+        return daysRented * 4000;
+    } else if(carType === "Midsize") {
+        return daysRented * 10000;
+    } else if(carType === "Luxury") {
+        return daysRented * 20000;
+    } else {
+        return "Invalid car type. Please choose Economy, Midsize or Luxury";
+    }
+};
+
+const daysRented = 0;
+const carType = "Economy";
+const totalRent = calculateRent(daysRented, carType);
+
+if (typeof totalRent === "number") {
+    console.log(`The total rental cost for ${daysRented} days with a ${carType} car is ${totalRent}`);
+} else {
+    console.log(totalRent); 
+}
+
+
+
+// 13. Bill splitter
+/*
+A restaurant wants to calculate the total bill for a table based on the cost of each dish and the number of
+people sharing it. They require a function that takes in the cost of each dish and the number of people sharing
+it and returns an object that contains the total bill and the bill to be paid by each person in the group.
+*/
+
+function splitBill(dishCosts, numberOfPeople) {
+    // Calculate total bill
+    let totalBill = 0;
+    for (let cost of dishCosts) {
+    totalBill += cost;
+    }
+
+    // Calculate per-person cost
+    let perPersonCost = totalBill / numberOfPeople;
+
+    // Return the result
+    return {
+    totalBill: totalBill,
+    perPersonCost: perPersonCost
+    };
+}
+
+// Example usage
+const dishCosts = [250, 300, 150, 200]; // Costs of each dish
+const numberOfPeople = 4; // Number of people sharing the bill
+
+const result = splitBill(dishCosts, numberOfPeople);
+
+console.log(`Total Bill: ${result.totalBill} and Each Person Pays: ${result.perPersonCost}`);
+
+
+
+
+// 14. Calculate the final order price
+/*
+A retail store needs to calculate the total cost of items in a customer's cart. A customer cart is an array of
+objects with unit price and quantity. Implement an arrow function to calculate the total cost of items, based on
+the unit price and quantity of each item.
+*/
+
+// Arrow function to calculate the total order price
+const calculateTotalPrice = (cart) => {
+return cart.reduce((total, item) => total + item.unitPrice * item.quantity, 0);
+};
+
+// Example usage
+const cart = [
+{ unitPrice: 200, quantity: 3 }, // Item 1: Price = 200, Quantity = 3
+{ unitPrice: 150, quantity: 2 }, // Item 2: Price = 150, Quantity = 2
+{ unitPrice: 300, quantity: 1 }  // Item 3: Price = 300, Quantity = 1
+];
+
+const totalPrice = calculateTotalPrice(cart);
+
+console.log(`The total price of the order is ₹${totalPrice}`);
+
+
+
+// 15. Calculate the percentage of the discount
+/*
+A retail store is offering a discount on its products and wants to calculate the percentage of the discount to
+show customers how much they can save. Given the original price and the discounted price of a product,
+implement an arrow function to calculate the percentage of the discount rounded off to two decimal places.
+This function could be useful for the store's marketing team to create promotions and offers that attract
+customers.
+*/
+
+// Arrow function to calculate discount percentage
+const calculateDiscountPercentage = (originalPrice, discountedPrice) => {
+if (originalPrice <= 0 || discountedPrice < 0 || discountedPrice > originalPrice) {
+    return "Invalid prices provided.";
+}
+const discount = originalPrice - discountedPrice; // Calculate the discount amount
+const discountPercentage = (discount / originalPrice) * 100; // Calculate the discount percentage
+return discountPercentage.toFixed(2); // Round off to two decimal places
+};
+
+// Example usage
+const originalPrice = 1000; // Original price of the product
+const discountedPrice = 800; // Discounted price of the product
+
+const discountPercentage = calculateDiscountPercentage(originalPrice, discountedPrice);
+
+if (isNaN(discountPercentage)) {
+console.log(discountPercentage); // Error message if inputs are invalid
+} else {
+console.log(`You save ${discountPercentage}% on this product!`);
+}
+
+
+
+// 16. Generate a random number
+/*
+Create a JavaScript program that generates a random number between 1 and 100 when the program starts.
+Use a self-invoking arrow function to generate the random number. This program can be used as a component
+in various games or applications that require a random number generator.
+*/
+
+(() => {
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    console.log(`Random Number: ${randomNumber}`);
+})();
+
+
+
+// 17. Build a banking application
+/*
+A banking application needs to manage customer accounts and transactions. The user detail is stored in an
+object with a keys name and balance. Write functions using object methods to update a customer's account
+balance based on a deposit or withdrawal.
+*/
+
+function updateCustomerDetails(userDetails, operation, amount) {
+    // Check if the operation is 'deposit' or 'withdrawal'
+    if (operation === 'deposit' && amount > 0) {
+        userDetails.balance += amount; // Increase balance on deposit
+        return `Deposited Rs. ${amount}. New balance: Rs. ${userDetails.balance}`;
+    } else if (operation === 'withdrawal' && amount > 0 && amount <= userDetails.balance) {
+        userDetails.balance -= amount; // Decrease balance on withdrawal
+        return `Withdrew Rs. ${amount}. New balance: Rs. ${userDetails.balance}`;
+    } else if (operation === 'withdrawal' && amount > userDetails.balance) {
+        return 'Insufficient balance for this withdrawal.';
+    } else {
+        return 'Invalid operation or amount.';
+    }
+}
+
+const userDetails = {
+    name: "Abhishek",
+    balance: 5000
+};
+
+const depositAmount = 2000;
+const withdrawalAmount = 3000;
+
+// Example usage:
+console.log(updateCustomerDetails(userDetails, 'deposit', depositAmount)); // Deposit Rs. 2000
+console.log(updateCustomerDetails(userDetails, 'withdrawal', withdrawalAmount)); // Withdraw Rs. 3000
+console.log(updateCustomerDetails(userDetails, 'withdrawal', 7000)); // Attempt to withdraw more than balance
+
+
+
+
+
